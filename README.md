@@ -77,3 +77,46 @@ python youtube_to_mp3.py --url "https://youtube.com/watch?v=abc123" --output ./m
 ```
 
 O arquivo será salvo com o título do vídeo como nome do arquivo.
+
+---
+
+### youtube_playlist_to_mp3
+
+Script para baixar todos os vídeos de uma playlist do YouTube e converter em MP3.
+
+O FFmpeg é incluído automaticamente via dependências, sem necessidade de instalação manual.
+
+**Uso:**
+```bash
+python youtube_playlist_to_mp3.py -u <URL_PLAYLIST> -o <DIRETORIO_DESTINO>
+```
+
+**Parâmetros:**
+- `-u, --url`: URL da playlist do YouTube (obrigatório)
+- `-o, --output`: Diretório onde os arquivos MP3 serão salvos (obrigatório)
+
+**Funcionalidades:**
+- Baixa todos os vídeos da playlist automaticamente
+- Mostra progresso do download (ex: "Baixando 3 de 15...")
+- Continua baixando mesmo se alguns vídeos falharem
+- Numera os arquivos pela ordem da playlist (ex: "1 - Nome do Video.mp3")
+- Exibe resumo ao final com estatísticas de sucesso/falha
+
+**Exemplos:**
+```bash
+# Baixar playlist inteira para pasta específica
+python youtube_playlist_to_mp3.py -u "https://youtube.com/playlist?list=PLx..." -o ./minhas_playlists/
+
+# Baixar para pasta no home
+python youtube_playlist_to_mp3.py --url "https://youtube.com/playlist?list=PLx..." --output ~/Music/playlists/
+
+# O script cria automaticamente o diretório se não existir
+python youtube_playlist_to_mp3.py -u "https://youtube.com/playlist?list=..." -o ./downloads/rock/
+```
+
+Os arquivos serão salvos com numeração e título: `1 - Nome do Video.mp3`, `2 - Outro Video.mp3`, etc.
+
+**Notas:**
+- Vídeos privados, removidos ou com restrição de região serão pulados
+- O script continua o download mesmo se alguns vídeos falharem
+- Um resumo detalhado é exibido ao final
